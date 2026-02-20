@@ -29,7 +29,7 @@ const replaceTemplate = (temp, product) => {
 const server = http.createServer((req, res) => {
   const { pathname, query } = url.parse(req.url, true);
 
-  if (pathname === "/") {
+  if (pathname === "/" || pathname === "/overview") {
     res.writeHead(200, { "Content-Type": "text/html" });
     const cardshtml = dataobj
       .map((el) => replaceTemplate(productcardtemp, el))
@@ -44,7 +44,7 @@ const server = http.createServer((req, res) => {
     const id = query.id;
     const product = dataobj[id];
     const html = replaceTemplate(details, product);
-    console.log(html);
+    // console.log(html);
 
     res.end(html);
   }
